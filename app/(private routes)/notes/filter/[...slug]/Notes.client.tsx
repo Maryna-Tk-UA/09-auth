@@ -56,19 +56,11 @@ function NotesClient({
             onChange={setCurPage}
           />
         )}
-        {/* <button className={css.button} onClick={openModal}>
-          Create note +
-        </button> */}
         <Link href="/notes/action/create" className={css.button}>
           Create note +
         </Link>
       </header>
       {data && <NoteList notes={data.notes} />}
-      {/* {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <NoteForm onClose={closeModal} />
-        </Modal>
-      )} */}
     </div>
   );
 }

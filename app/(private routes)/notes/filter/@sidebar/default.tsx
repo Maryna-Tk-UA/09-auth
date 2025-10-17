@@ -20,7 +20,11 @@ function SidebarNotes() {
     <ul className={css.menuList}>
       {TAGS.map((tag) => (
         <li key={tag} className={css.menuItem}>
-          <Link href={`/notes/filter/${tag}`} className={css.menuLink}>
+          <Link
+            href={`/notes/filter/${tag}`}
+            className={css.menuLink}
+            prefetch={false}
+          >
             {tag === "All" ? "All notes" : tag}
           </Link>
         </li>
