@@ -2,14 +2,14 @@
 
 import css from "./SignUpPage.module.css";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { ApiError } from "@/app/api/api";
 import { useAuthStore } from "@/lib/store/authStore";
 import { register, RegisterRequest } from "@/lib/api/clientApi";
+import { useRouter } from "next/navigation";
 
 function SignUpPage() {
-  const router = useRouter();
   const [error, setError] = useState("");
+  const router = useRouter();
 
   const setUser = useAuthStore((state) => state.setUser);
 

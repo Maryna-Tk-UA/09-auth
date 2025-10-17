@@ -2,7 +2,7 @@ import Link from "next/link";
 import css from "./ProfilePage.module.css";
 import { getMe } from "@/lib/api/serverApi";
 
-async function ProfilePage() {
+async function Profile() {
   const user = await getMe();
 
   return (
@@ -32,4 +32,4 @@ async function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default Profile;

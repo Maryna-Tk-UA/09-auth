@@ -32,24 +32,23 @@ export async function fetchNotes({ page, searchValue, tag }: fetchNotesProps) {
 }
 
 export async function fetchNoteById(id: string) {
-  const { data } = await nextServer.get<Note>(`/notes/${id}`, {});
+  const { data } = await nextServer.get<Note>(`/notes/${id}`);
   return data;
 }
 
 export interface createNoteProps {
   title: string;
-  content?: string;
-  // tag: NoteTag;
+  content: string;
   tag: string;
 }
 
 export async function createNote(body: createNoteProps) {
-  const res = await nextServer.post<Note>("/notes", body, {});
+  const res = await nextServer.post<Note>("/notes", body);
   return res.data;
 }
 
 export async function deleteNote(noteId: string) {
-  const res = await nextServer.delete<Note>(`/notes/${noteId}`, {});
+  const res = await nextServer.delete<Note>(`/notes/${noteId}`);
   return res.data;
 }
 

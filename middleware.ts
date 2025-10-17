@@ -75,9 +75,9 @@ export async function middleware(request: NextRequest) {
   }
 
   // Якщо accessToken існує, приватний маршрут - виконуємо
-  // редірект на головну
+  // редірект на profile
   if (isAuthRoute) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/profile", request.url));
   }
 
   // приватний маршрут - дозволяємо доступ
