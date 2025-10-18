@@ -24,7 +24,7 @@ export async function generateMetadata({
 
   const title = `${tag === "All" ? "All notes" : `${tag}`}`;
   const description = `Notes filtered by "${tag}".`;
-  const url = `https://08-zustand-snowy-phi.vercel.app/notes/filter/${tag}`;
+  const url = `https://09-auth-eta-fawn.vercel.app/notes/filter/${tag}`;
 
   return {
     title,

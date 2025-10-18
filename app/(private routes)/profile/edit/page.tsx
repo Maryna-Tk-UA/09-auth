@@ -4,6 +4,7 @@ import css from "./EditProfilePage.module.css";
 import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getMe, updateMe } from "@/lib/api/clientApi";
+import Image from "next/image";
 
 function EditProfilePage() {
   const [userName, setUserName] = useState("");
@@ -34,13 +35,13 @@ function EditProfilePage() {
       <div className={css.profileCard}>
         <h1 className={css.formTitle}>Edit Profile</h1>
 
-        {/* <Image
-          src="avatar"
+        <Image
+          src="https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"
           alt="User Avatar"
           width={120}
           height={120}
           className={css.avatar}
-        /> */}
+        />
 
         <form className={css.profileInfo} onSubmit={handleSaveUser}>
           <div className={css.usernameWrapper}>
@@ -50,6 +51,7 @@ function EditProfilePage() {
               type="text"
               className={css.input}
               onChange={handleChange}
+              value={userName}
             />
           </div>
 

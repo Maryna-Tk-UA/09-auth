@@ -1,6 +1,26 @@
 import Link from "next/link";
 import css from "./ProfilePage.module.css";
 import { getMe } from "@/lib/api/serverApi";
+import { Metadata } from "next";
+import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Profile",
+  description: "Your profile",
+  openGraph: {
+    title: "Profile",
+    description: "Your profile",
+    url: "https://09-auth-eta-fawn.vercel.app/profile",
+    images: [
+      {
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Your profile",
+      },
+    ],
+  },
+};
 
 async function Profile() {
   const user = await getMe();
@@ -15,13 +35,13 @@ async function Profile() {
           </Link>
         </div>
         <div className={css.avatarWrapper}>
-          {/* <Image
-            src="User Avatar"
+          <Image
+            src="https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"
             alt="User Avatar"
             width={120}
             height={120}
             className={css.avatar}
-          /> */}
+          />
         </div>
         <div className={css.profileInfo}>
           <p>Username: {user.username}</p>

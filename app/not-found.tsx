@@ -4,14 +4,14 @@ import css from "./Home.module.css";
 export const metadata: Metadata = {
   title: "404 - Page not found",
   description: "Sorry, the page you are looking for does not exist.",
-  // url: "https://08-zustand-snowy-phi.vercel.app/not-found",  // не працює в лоб
+  // url: "https://09-auth-eta-fawn.vercel.app/not-found",  // не працює в лоб
   alternates: {
-    canonical: "https://08-zustand-snowy-phi.vercel.app/not-found",
+    canonical: "https://09-auth-eta-fawn.vercel.app/not-found",
   },
   openGraph: {
     title: "404 - Page not found",
     description: "Sorry, the page you are looking for does not exist.",
-    url: "https://08-zustand-snowy-phi.vercel.app/not-found",
+    url: "https://09-auth-eta-fawn.vercel.app/not-found",
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
