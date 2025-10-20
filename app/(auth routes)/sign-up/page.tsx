@@ -6,33 +6,40 @@ import { ApiError } from "@/app/api/api";
 import { useAuthStore } from "@/lib/store/authStore";
 import { register, RegisterRequest } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 function SignUpPage() {
   const [error, setError] = useState("");
   const router = useRouter();
-
   const setUser = useAuthStore((state) => state.setUser);
 
-  const handleSubmit = async (formData: FormData) => {
-    try {
-      const formValues = Object.fromEntries(formData) as RegisterRequest;
-      const res = await register(formValues);
-      if (res) {
-        setUser(res);
-        router.replace("/profile");
-      } else {
-        setError("Invalid email or password");
-      }
-    } catch (error) {
-      const e = error as ApiError;
+  const queryClient = useQueryClient();
 
+  const { mutate, isPending: isLoading } = useMutation({
+    mutationFn: (data: RegisterRequest) => register(data),
+    onSuccess: async (user) => {
+      setUser(user);
+      toast.success(`Hello, ${user.username}`, {
+        position: "top-center",
+        duration: 2500,
+      });
+      queryClient.invalidateQueries({ queryKey: ["me"] });
+      router.replace("/profile");
+    },
+    onError: (error: ApiError) => {
       const msg =
-        e.response?.data?.response?.message ??
-        e.response?.data?.error ??
+        error.response?.data?.response?.message ??
+        error.response?.data?.error ??
         "Oops... some error";
 
       setError(msg);
-    }
+    },
+  });
+
+  const handleSubmit = async (formData: FormData) => {
+    const formValues = Object.fromEntries(formData) as RegisterRequest;
+    mutate(formValues);
   };
 
   return (
@@ -62,8 +69,12 @@ function SignUpPage() {
         </div>
 
         <div className={css.actions}>
-          <button type="submit" className={css.submitButton}>
-            Register
+          <button
+            type="submit"
+            className={css.submitButton}
+            disabled={isLoading}
+          >
+            {isLoading ? "Loading" : "Register"}
           </button>
         </div>
 

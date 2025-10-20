@@ -1,8 +1,5 @@
 import css from "./Home.module.css";
 
-// SSR-component, в якому заздалегідь виконується prefetch (попереднє
-// завантаження даних через TanStack Query) з гідратацією кеша.
-
 function Home() {
   return (
     <main>
