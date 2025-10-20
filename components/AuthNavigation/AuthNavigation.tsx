@@ -22,7 +22,7 @@ function AuthNavigation() {
     // Чистимо глобальний стан
     clearIsAuthenticated();
     // Виконуємо навігацію на сторінку авторизації
-    router.push("/sign-in");
+    router.replace("/sign-in");
   };
 
   // За умови, що сесія є, відображаємо інфу про користувача та кнопку

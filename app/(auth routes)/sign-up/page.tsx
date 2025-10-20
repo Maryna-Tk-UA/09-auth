@@ -19,7 +19,7 @@ function SignUpPage() {
       const res = await register(formValues);
       if (res) {
         setUser(res);
-        router.push("/profile");
+        router.replace("/profile");
       } else {
         setError("Invalid email or password");
       }

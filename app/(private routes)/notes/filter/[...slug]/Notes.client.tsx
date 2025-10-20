@@ -7,8 +7,6 @@ import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";
-// import Modal from "@/components/Modal/Modal";
-// import NoteForm from "@/components/NoteForm/NoteForm";
 import Link from "next/link";
 import { fetchNotes } from "@/lib/api/clientApi";
 
@@ -24,12 +22,8 @@ function NotesClient({
   initialTag,
 }: NotesClientProps) {
   const [curPage, setCurPage] = useState(initialPage);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchValue, setSearchValue] = useState(initialSearch);
   const [tag] = useState(initialTag);
-
-  // const openModal = () => setIsModalOpen(true);
-  // const closeModal = () => setIsModalOpen(false);
 
   const handleSearch = useDebouncedCallback((value: string) => {
     setSearchValue(value);
