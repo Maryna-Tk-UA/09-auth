@@ -5,7 +5,7 @@ import css from "./AuthNavigation.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
 import { getMe, logout } from "@/lib/api/clientApi";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 function AuthNavigation() {
   const router = useRouter();
@@ -17,10 +17,14 @@ function AuthNavigation() {
     (state) => state.clearIsAuthenticated
   );
 
+  const queryClient = useQueryClient();
+
   const { data } = useQuery({
     queryKey: ["me"],
     queryFn: getMe,
-    enabled: isAuthenticated,
+    enabled: isAuthenticated, // запуститься, коли буде true
+    retry: false,
+    refetchOnWindowFocus: false,
   });
 
   const handleLogout = async () => {
@@ -28,6 +32,8 @@ function AuthNavigation() {
     await logout();
     // Чистимо глобальний стан
     clearIsAuthenticated();
+    // чистимо кеш
+    queryClient.removeQueries({ queryKey: ["me"] });
     // Виконуємо навігацію на сторінку авторизації
     router.replace("/sign-in");
   };

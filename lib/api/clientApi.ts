@@ -95,6 +95,6 @@ export type UpdateUserRequest = {
 };
 
 export const updateMe = async (payload: UpdateUserRequest) => {
-  const res = await nextServer.patch("/users/me", payload);
+  const res = await nextServer.patch<User>("/users/me", payload);
   return res.data;
 };

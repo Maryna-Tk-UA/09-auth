@@ -55,6 +55,7 @@ function SignInPage() {
             name="email"
             className={css.input}
             required
+            disabled={isLoading}
           />
         </div>
 
@@ -66,6 +67,7 @@ function SignInPage() {
             name="password"
             className={css.input}
             required
+            disabled={isLoading}
           />
         </div>
 
