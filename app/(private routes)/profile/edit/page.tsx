@@ -9,8 +9,14 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 function EditProfilePage() {
   const [userName, setUserName] = useState("");
+  const [navigating, setNavigating] = useState(false);
   const router = useRouter();
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    // Попереднє підвантаження сторінки профілю для миттєвого переходу
+    router.prefetch("/profile");
+  }, [router]);
 
   const { data: user, isLoading } = useQuery({
     queryKey: ["me"],
@@ -24,6 +30,7 @@ function EditProfilePage() {
   const { mutate, status } = useMutation({
     mutationFn: (payload: { username: string }) => updateMe(payload),
     onSuccess: () => {
+      setNavigating(true);
       router.replace("/profile");
       queryClient.invalidateQueries({ queryKey: ["me"] });
     },
@@ -32,6 +39,7 @@ function EditProfilePage() {
   const submitting = status === "pending" || isLoading;
 
   const handleBack = () => {
+    setNavigating(true);
     router.replace("/profile");
   };
 
@@ -46,7 +54,7 @@ function EditProfilePage() {
     mutate({ username: name });
   };
 
-  if (submitting) return "Loading...";
+  if (submitting || navigating) return "Loading...";
 
   return (
     <main className={css.mainContent}>
