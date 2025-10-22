@@ -34,6 +34,7 @@ function AuthNavigation() {
     clearIsAuthenticated();
     // чистимо кеш
     queryClient.removeQueries({ queryKey: ["me"] });
+    sessionStorage.removeItem("auth:triggerRefresh");
     // Виконуємо навігацію на сторінку авторизації
     router.replace("/sign-in");
   };

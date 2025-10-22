@@ -25,6 +25,7 @@ function SignInPage() {
         duration: 2500,
       });
       queryClient.invalidateQueries({ queryKey: ["me"] });
+      sessionStorage.setItem("auth:triggerRefresh", "1");
       router.replace("/profile");
     },
     onError: (error: ApiError) => {

@@ -11,8 +11,14 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
   const router = useRouter();
 
   useEffect(() => {
-    // refresh викличе перезавантаження даних
-    router.refresh();
+    // прописую ключ для sessionStorage
+    const key = "auth:triggerRefresh";
+    // перевірка на встановлення ключа
+    if (sessionStorage.getItem(key) === "1") {
+      sessionStorage.removeItem(key);
+      // refresh викличе перезавантаження даних
+      router.refresh();
+    }
   }, [router]);
 
   return children;
