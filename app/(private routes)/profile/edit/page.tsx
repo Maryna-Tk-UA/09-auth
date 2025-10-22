@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 import { getMe, updateMe } from "@/lib/api/clientApi";
 import Image from "next/image";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useAuthStore } from "@/lib/store/authStore";
 
 function EditProfilePage() {
   const [userName, setUserName] = useState("");
   const [navigating, setNavigating] = useState(false);
   const router = useRouter();
   const queryClient = useQueryClient();
+  const setUser = useAuthStore((state) => state.setUser);
 
   useEffect(() => {
     // Попереднє підвантаження сторінки профілю для миттєвого переходу
@@ -29,10 +31,11 @@ function EditProfilePage() {
 
   const { mutate, status } = useMutation({
     mutationFn: (payload: { username: string }) => updateMe(payload),
-    onSuccess: () => {
+    onSuccess: (updateUser) => {
+      setUser(updateUser);
+      queryClient.invalidateQueries({ queryKey: ["me"] });
       setNavigating(true);
       router.replace("/profile");
-      queryClient.invalidateQueries({ queryKey: ["me"] });
     },
   });
 
@@ -62,7 +65,7 @@ function EditProfilePage() {
         <h1 className={css.formTitle}>Edit Profile</h1>
 
         <Image
-          src="https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"
+          src={user?.avatar || "/avatar.jpg"}
           alt="User Avatar"
           width={120}
           height={120}
