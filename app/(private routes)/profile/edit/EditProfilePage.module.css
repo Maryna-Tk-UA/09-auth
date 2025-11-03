@@ -1,45 +1,52 @@
-/* page.module.css */
-
 .mainContent {
-  flex: 1;
+  box-sizing: border-box;
+  background-color: #f6f7f8;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 32px;
+  align-items: flex-start;
+  padding: 24px 16px 40px;
+  min-height: 60vh;
 }
 
 .profileCard {
-  max-width: 500px;
   width: 100%;
+  max-width: 480px;
   background-color: #ffffff;
   border-radius: 12px;
+  border: 1px solid #dee2e6;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   padding: 24px;
+  box-sizing: border-box;
   text-align: left;
 }
 
 .formTitle {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   color: #1a1a1a;
-  margin-bottom: 24px;
+  margin: 0 0 24px 0;
+  line-height: 1.2;
   text-align: left;
 }
 
 .avatar {
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid #dee2e6;
+  width: 120px;
+  height: 120px;
   display: block;
   margin: 0 auto 24px auto;
 }
 
 .profileInfo {
-  font-size: 18px;
+  font-size: 16px;
   color: #333;
   display: flex;
   flex-direction: column;
   gap: 16px;
   align-items: flex-start;
+  line-height: 1.4;
 }
 
 .usernameWrapper {
@@ -52,6 +59,7 @@
   font-weight: 600;
   margin-bottom: 8px;
   color: #222;
+  font-size: 14px;
 }
 
 .input {
@@ -61,6 +69,9 @@
   border-radius: 8px;
   outline-offset: 2px;
   transition: border-color 0.2s ease;
+  background-color: #fff;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .input:focus {
@@ -71,45 +82,154 @@
 .profileInfo p {
   margin: 0;
   font-weight: 500;
+  color: #444;
+  font-size: 15px;
 }
 
 .saveButton {
-  padding: 12px 24px;
-  font-size: 18px;
+  padding: 12px 16px;
+  font-size: 16px;
   font-weight: 600;
   background-color: #0d6efd;
   color: white;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: stretch;
   text-align: center;
+  width: 100%;
 }
 
 .saveButton:hover {
   background-color: #0b5ed7;
 }
 
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
 .cancelButton {
-  padding: 8px 16px;
-  font-size: 16px;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 500;
   background-color: transparent;
   color: #6c757d;
   border: 2px solid #6c757d;
   border-radius: 8px;
-  cursor: pointer;
   transition:
     background-color 0.2s ease,
-    color 0.2s ease;
+    color 0.2s ease,
+    border-color 0.2s ease;
+  width: 100%;
+  text-align: center;
 }
 
 .cancelButton:hover {
   background-color: #6c757d;
   color: white;
+  border-color: #6c757d;
 }
+
+.cancelButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
 .actions {
   display: flex;
+  flex-direction: column;
+  width: 100%;
   gap: 12px;
   margin-top: 20px;
+}
+
+.loadingWrapper {
+  width: 100%;
+  min-height: 50vh; /* або 100vh якщо хочеш по центру екрана */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .mainContent {
+    padding: 40px 24px 64px;
+    min-height: 70vh;
+  }
+
+  .profileCard {
+    padding: 32px;
+    max-width: 520px;
+  }
+
+  .formTitle {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .profileInfo {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .saveButton {
+    width: auto;
+    font-size: 16px;
+    padding: 10px 16px;
+  }
+
+  .cancelButton {
+    width: auto;
+    font-size: 15px;
+    padding: 8px 14px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .mainContent {
+    padding: 60px 24px 80px;
+    min-height: 70vh;
+  }
+
+  .profileCard {
+    max-width: 560px;
+    padding: 36px;
+    border-radius: 16px;
+  }
+
+  .formTitle {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 32px;
+  }
+
+  .profileInfo {
+    font-size: 18px;
+    gap: 20px;
+  }
+
+  .saveButton {
+    font-size: 17px;
+    padding: 12px 20px;
+    border-radius: 8px;
+  }
+
+  .cancelButton {
+    font-size: 16px;
+    padding: 10px 16px;
+    border-radius: 8px;
+  }
 }

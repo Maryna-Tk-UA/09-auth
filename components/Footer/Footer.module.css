@@ -1,18 +1,20 @@
-/* components/Footer.module.css */
-
 .footer {
-  padding: 20px;
+  padding: 15px;
   background-color: #f0f0f0;
   text-align: center;
   font-size: 14px;
   color: #555;
   border-top: 1px solid #ddd;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .wrap {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .footer a {
@@ -23,4 +25,17 @@
 
 .footer a:hover {
   text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .wrap {
+    flex-direction: row;
+    gap: 20px;
+  }
 }

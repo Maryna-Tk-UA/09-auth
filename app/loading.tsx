@@ -1,5 +1,7 @@
+import OverlayLoader from "@/components/OverlayLoader/OverlayLoader";
+
 function Loading() {
-  return <p>Loading, please wait...</p>;
+  return <OverlayLoader />;
 }
 
 export default Loading;

@@ -2,7 +2,7 @@ import css from "./Home.module.css";
 
 function Home() {
   return (
-    <main>
+    <section className={css.wrapper}>
       <div className={css.container}>
         <h1 className={css.title}>Welcome to NoteHub</h1>
         <p className={css.description}>
@@ -17,7 +17,7 @@ function Home() {
           and productivity.
         </p>
       </div>
-    </main>
+    </section>
   );
 }
 

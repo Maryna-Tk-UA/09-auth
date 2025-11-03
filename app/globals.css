@@ -43,3 +43,7 @@ img {
 button {
   cursor: pointer;
 }
+
+main {
+  flex: 1;
+}

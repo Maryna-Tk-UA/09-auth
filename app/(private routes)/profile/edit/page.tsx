@@ -7,6 +7,7 @@ import { getMe, updateMe } from "@/lib/api/clientApi";
 import Image from "next/image";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuthStore } from "@/lib/store/authStore";
+import Loader from "@/components/Loader/Loader";
 
 function EditProfilePage() {
   const [userName, setUserName] = useState("");
@@ -57,7 +58,15 @@ function EditProfilePage() {
     mutate({ username: name });
   };
 
-  if (submitting || navigating) return "Loading...";
+  if (isLoading || submitting || navigating) {
+    return (
+      <main className={css.mainContent}>
+        <div className={css.loadingWrapper}>
+          <Loader />
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className={css.mainContent}>

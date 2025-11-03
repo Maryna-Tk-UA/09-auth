@@ -8,6 +8,7 @@ import { login, LoginRequest } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import OverlayLoader from "@/components/OverlayLoader/OverlayLoader";
 
 function SignInPage() {
   const router = useRouter();
@@ -45,6 +46,7 @@ function SignInPage() {
 
   return (
     <main className={css.mainContent}>
+      {isLoading && <OverlayLoader />}
       <form className={css.form} action={handleSubmit}>
         <h1 className={css.formTitle}>Sign in</h1>
 

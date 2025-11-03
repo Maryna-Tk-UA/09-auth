@@ -98,3 +98,14 @@ export const updateMe = async (payload: UpdateUserRequest) => {
   const res = await nextServer.patch<User>("/users/me", payload);
   return res.data;
 };
+
+export type updateNoteProps = {
+  title: string;
+  content: string;
+  tag: string;
+};
+
+export const updateNote = async (id: string, payload: updateNoteProps) => {
+  const res = await nextServer.patch<Note>(`/notes/${id}`, payload);
+  return res.data;
+};

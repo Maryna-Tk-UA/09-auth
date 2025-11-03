@@ -1,32 +1,141 @@
 .app {
-  width: 90%;
-  max-width: 1280px;
-  margin: 0px auto;
-  padding: 0 16px 16px;
-  flex: 1;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .toolbar {
-  margin-bottom: 16px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
   padding: 16px 0;
+  margin-bottom: 16px;
   background-color: #f8f9fa;
   border-bottom: 1px solid #dee2e6;
+  box-sizing: border-box;
+}
+
+.left,
+.center,
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toolbar :global(input[type="text"]),
+.toolbar :global(.searchInput) {
+  max-width: 375px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .button {
-  padding: 6px 12px;
-  font-size: 16px;
-  color: #fff;
+  display: inline-block;
+  align-self: flex-start;
+  min-width: auto;
+  text-align: center;
   background-color: #0d6efd;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 12px;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
+  text-decoration: none;
   transition: background-color 0.2s ease;
 }
 
 .button:hover {
   background-color: #0b5ed7;
 }
+
+.loadingWrapper {
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .toolbar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 16px;
+    padding: 16px 0;
+  }
+
+  .left {
+    flex: 0 0 auto;
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .right {
+    flex: 0 0 auto;
+    width: auto;
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+
+  .center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+  }
+
+  .toolbar :global(input[type="text"]),
+  .toolbar :global(.searchInput) {
+    max-width: 150px;
+  }
+
+  .button {
+    font-size: 15px;
+    padding: 8px 12px;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1440px) {
+  .toolbar {
+    margin-bottom: 32px;
+    border-top: 1px solid #dee2e6;
+  }
+
+  .toolbar :global(input[type="text"]),
+  .toolbar :global(.searchInput) {
+    max-width: 250px;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 8px 14px;
+    border-radius: 6px;
+  }
+}
+
+/* flex: 0 0 auto; =
+не рости,
+не стискайся,
+займай стільки місця, скільки мені реально треба по контенту. */
+/* flex-grow: 1 → можу розтягуватися і забирати вільне місце,
+flex-shrink: 1 → можу трошки стиснутися, якщо мало місця,
+flex-basis: auto → стартую зі своєї природної ширини.
+Тобто:
+flex: 1 1 auto; = "я еластичний, я заповнюю між лівим і правим".
+flex: 0 0 auto; = "я жорсткий, не чіпай мене". */

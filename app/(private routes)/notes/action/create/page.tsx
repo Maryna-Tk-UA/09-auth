@@ -22,12 +22,12 @@ export const metadata: Metadata = {
 
 function CreateNote() {
   return (
-    <main className={css.main}>
-      <div className={css.container}>
+    <section className={css.wrapper}>
+      <div className={css.card}>
         <h1 className={css.title}>Create note</h1>
         <NoteForm />
       </div>
-    </main>
+    </section>
   );
 }
 

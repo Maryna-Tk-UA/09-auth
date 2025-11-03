@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { fetchNoteById } from "@/lib/api/clientApi";
+import OverlayLoader from "@/components/OverlayLoader/OverlayLoader";
 
 function NotePreviewClient() {
   //!
@@ -29,7 +30,7 @@ function NotePreviewClient() {
     router.back();
   };
 
-  if (isLoading) return <p>Loading, please wait...</p>;
+  if (isLoading) return <OverlayLoader />;
 
   if (error || !note) return <p>Something went wrong.</p>;
   return (

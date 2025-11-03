@@ -22,7 +22,7 @@ function AuthNavigation() {
   const { data } = useQuery({
     queryKey: ["me"],
     queryFn: getMe,
-    enabled: isAuthenticated, // запуститься, коли буде true
+    enabled: isAuthenticated,
     retry: false,
     refetchOnWindowFocus: false,
   });
@@ -44,27 +44,29 @@ function AuthNavigation() {
   // За умови, що сесія є, відображаємо інфу про користувача та кнопку
   // logout, інакше - лінки для авторизації
   return isAuthenticated ? (
-    <ul>
-      <li className={css.navigationItem}>
+    <ul className={css.navigationItem}>
+      <li>
         <Link href="/profile" prefetch={false} className={css.navigationLink}>
           Profile
         </Link>
       </li>
-      <li className={css.navigationItem}>
+      <li>
         <p className={css.userEmail}>{email}</p>
+      </li>
+      <li>
         <button className={css.logoutButton} onClick={handleLogout}>
           Logout
         </button>
       </li>
     </ul>
   ) : (
-    <ul>
-      <li className={css.navigationItem}>
+    <ul className={css.navigationItem}>
+      <li>
         <Link href="/sign-in" prefetch={false} className={css.navigationLink}>
           Login
         </Link>
       </li>
-      <li className={css.navigationItem}>
+      <li>
         <Link href="/sign-up" prefetch={false} className={css.navigationLink}>
           Sign up
         </Link>

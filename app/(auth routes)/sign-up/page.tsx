@@ -8,6 +8,7 @@ import { register, RegisterRequest } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import OverlayLoader from "@/components/OverlayLoader/OverlayLoader";
 
 function SignUpPage() {
   const [error, setError] = useState("");
@@ -45,8 +46,9 @@ function SignUpPage() {
 
   return (
     <main className={css.mainContent}>
-      <h1 className={css.formTitle}>Sign up</h1>
+      {isLoading && <OverlayLoader />}
       <form className={css.form} action={handleSubmit}>
+        <h1 className={css.formTitle}>Sign up</h1>
         <div className={css.formGroup}>
           <label htmlFor="email">Email</label>
           <input
@@ -66,6 +68,7 @@ function SignUpPage() {
             name="password"
             className={css.input}
             required
+            disabled={isLoading}
           />
         </div>
 

@@ -4,6 +4,7 @@ import { checkSession, getMe } from "@/lib/api/clientApi";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
+import OverlayLoader from "../OverlayLoader/OverlayLoader";
 
 type AuthProviderProps = {
   children: React.ReactNode;
@@ -42,7 +43,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }, [clearIsAuthenticated, queryClient, setUser, status, user]);
 
-  if (status === "pending") return "Loading...";
+  if (status === "pending") return <OverlayLoader />;
 
   return children;
 };

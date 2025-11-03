@@ -5,6 +5,7 @@ import css from "./NoteDetails.module.css";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { fetchNoteById } from "@/lib/api/clientApi";
+import OverlayLoader from "@/components/OverlayLoader/OverlayLoader";
 // import { useEffect, useState } from "react";
 // import { Note } from "@/types/note";
 
@@ -34,7 +35,7 @@ function NoteDetailsClient() {
     refetchOnMount: false,
   });
 
-  const handleClick = () => {
+  const handleBack = () => {
     router.back();
   };
 
@@ -47,7 +48,7 @@ function NoteDetailsClient() {
   //   fn();
   // }, [note]);
 
-  if (isLoading) return <p>Loading, please wait...</p>;
+  if (isLoading) return <OverlayLoader />;
 
   if (error || !note) return <p>Something went wrong.</p>;
 
@@ -75,7 +76,7 @@ function NoteDetailsClient() {
               </time>
             )}
           </p>
-          <button className={css.backBtn} onClick={handleClick}>
+          <button className={css.backBtn} onClick={handleBack}>
             Back
           </button>
           {/* {viewNote && <p className={css.test}>{viewNote.title}</p>} */}

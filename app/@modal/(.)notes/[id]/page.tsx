@@ -28,36 +28,3 @@ async function NoteDetails({ params }: DetailsProps) {
 }
 
 export default NoteDetails;
-
-// import { fetchNoteById } from "@/lib/api";
-// import css from "./NotePreview.module.css";
-// import BackButton from "@/app/@modal/(.)notes/[id]/NotePreview.client";
-
-// interface NotePreviewProps {
-//   params: Promise<{ id: string }>;
-// }
-
-// async function NotePreview({ params }: NotePreviewProps) {
-//   const { id } = await params;
-//   const note = await fetchNoteById(id);
-
-//   return (
-//     <div className={css.container}>
-//       {note && (
-//         <div className={css.item}>
-//           <div className={css.header}>
-//             <h2>{note.title}</h2>
-//           </div>
-//           <p className={css.content}>{note.content}</p>
-//           <p className={css.date}>
-//             {new Date(note.createdAt).toLocaleString()}
-//           </p>
-//           <p className={css.tag}>{note.tag}</p>
-//           <BackButton />
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default NotePreview;
